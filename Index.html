@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+        /* Map Container */
+        .map {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+
+            /* Simple map-like background */
+            background:
+                linear-gradient(45deg, transparent 45%, #ffffff 46%, #ffffff 48%, transparent 49%),
+                linear-gradient(-45deg, transparent 45%, #ffffff 46%, #ffffff 48%, transparent 49%),
+                #d8e8d0;
+            background-size: 120px 120px;
+        }
+
+        /* Roads */
+        .road {
+            position: absolute;
+            background: #ffffff;
+            border: 2px solid #ccc;
+        }
+
+        .road.horizontal {
+            width: 100%;
+            height: 45px;
+            top: 45%;
+            left: 0;
+        }
+
+        .road.vertical {
+            width: 45px;
+            height: 100%;
+            top: 0;
+            left: 55%;
+        }
+
+        .road.diagonal {
+            width: 150%;
+            height: 35px;
+            top: 25%;
+            left: -20%;
+            transform: rotate(25deg);
+        }
+
+        /* Search Box */
+        .search-box {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 350px;
+            background: white;
+            padding: 12px 18px;
+            border-radius: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .search-icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        /* Map Markers */
+        .marker {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: #e53935;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .marker::after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            top: 11px;
+            left: 11px;
+        }
+
+        .marker1 {
+            top: 35%;
+            left: 35%;
+        }
+
+        .marker2 {
+            top: 60%;
+            left: 70%;
+        }
+
+        .marker3 {
+            top: 25%;
+            left: 75%;
+        }
+
+        /* Zoom Controls */
+        .zoom {
+            position: absolute;
+            right: 20px;
+            bottom: 100px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .zoom button {
+            display: block;
+            width: 45px;
+            height: 45px;
+            border: none;
+            background: white;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .zoom button:hover {
+            background: #eee;
+        }
+
+        /* My Location Button */
+        .location {
+            position: absolute;
+            right: 20px;
+            bottom: 30px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: white;
+            font-size: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+
+        /* Location Label */
+        .place-name {
+            position: absolute;
+            top: calc(35% - 50px);
+            left: calc(35% + 20px);
+            background: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-size: 14px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .search-box {
+                width: calc(100% - 40px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="map">
+
+        <!-- Roads -->
+        <div class="road horizontal"></div>
+        <div class="road vertical"></div>
+        <div class="road diagonal"></div>
+
+        <!-- Search -->
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Search places...">
+        </div>
+
+        <!-- Markers -->
+        <div class="marker marker1"></div>
+        <div class="marker marker2"></div>
+        <div class="marker marker3"></div>
+
+        <!-- Place Name -->
+        <div class="place-name">
+            📍 Main Location
+        </div>
+
+        <!-- Zoom Buttons -->
+        <div class="zoom">
+            <button>+</button>
+            <button>−</button>
+        </div>
+
+        <!-- Current Location -->
+        <button class="location">⌾</button>
+
+    </div>
+
+</body>
+</html>
