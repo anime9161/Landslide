@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landslide Monitoring System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>🌍 Landslide Monitoring System</h1>
+    <p>View and monitor landslide-prone areas</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Landslides</a>
+    <a href="#">Map</a>
+    <a href="#">About</a>
+</nav>
+
+<main>
+
+    <section class="controls">
+        <input type="text" id="searchBox"
+               placeholder="Search location...">
+
+        <select id="riskFilter">
+            <option value="all">All Risk Levels</option>
+            <option value="high">High Risk</option>
+            <option value="medium">Medium Risk</option>
+            <option value="low">Low Risk</option>
+        </select>
+
+        <button onclick="findLocation()">🔍 Search</button>
+    </section>
+
+    <section class="map-container">
+
+        <div class="map" id="map">
+
+            <div class="road road1"></div>
+            <div class="road road2"></div>
+
+            <div class="landslide-marker high"
+                 data-location="Himalayan Region"
+                 data-risk="high"
+                 onclick="showDetails(this)">
+                ⚠️
+            </div>
+
+            <div class="landslide-marker medium"
+                 data-location="Uttarakhand"
+                 data-risk="medium"
+                 onclick="showDetails(this)">
+                ⚠️
+            </div>
+
+            <div class="landslide-marker low"
+                 data-location="Himachal Pradesh"
+                 data-risk="low"
+                 onclick="showDetails(this)">
+                ⚠️
+            </div>
+
+            <div class="landslide-marker high"
+                 data-location="Sikkim"
+                 data-risk="high"
+                 onclick="showDetails(this)">
+                ⚠️
+            </div>
+
+            <div class="map-label">Landslide Risk Map</div>
+
+        </div>
+
+        <div class="details" id="details">
+            <h2>Landslide Details</h2>
+            <p>Click a ⚠️ marker on the map.</p>
+        </div>
+
+    </section>
+
+    <section class="legend">
+
+        <h2>Risk Level</h2>
+
+        <div>
+            <span class="box high-box"></span>
+            High Risk
+        </div>
+
+        <div>
+            <span class="box medium-box"></span>
+            Medium Risk
+        </div>
+
+        <div>
+            <span class="box low-box"></span>
+            Low Risk
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 Landslide Monitoring System</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
